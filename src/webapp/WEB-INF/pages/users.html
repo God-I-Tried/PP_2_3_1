@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Users</title>
+  <style>table th, table td {padding: 5px; text-align: center;}</style>
+</head>
+
+<body>
+<h1>Users</h1>
+
+<form method="get" th:action="@{/add_user}">
+  <label for="addFirstName">First Name:</label>
+  <input type="text" id="addFirstName" name="firstName">
+  <label for="addLastName">Last Name:</label>
+  <input type="text" id="addLastName" name="lastName">
+  <label for="addEmail">Email:</label>
+  <input type="text" id="addEmail" name="email">
+  <button type="submit">Add User</button>
+</form>
+
+<table border="1">
+  <tr>
+    <th>Id</th>
+    <th>First Name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+  <tr th:each="user : ${users}">
+    <td th:text="${user.id}">id</td>
+
+    <form method="get" th:action="@{/edit_user}">
+    <td>
+      <label for="firstName"></label>
+      <input type="text" id="firstName" name="firstName" th:value="${user.firstName}">
+    </td>
+
+    <td>
+        <label for="lastName"></label>
+        <input type="text" id="lastName" name="lastName" th:value="${user.lastName}">
+    </td>
+
+    <td>
+      <label for="email"></label>
+      <input type="text" id="email" name="email" th:value="${user.email}">
+    </td>
+
+      <td>
+      <input type="hidden" name="id" th:value="${user.id}">
+      <button type="submit">Edit</button>
+      </td>
+    </form>
+
+  <td>
+    <form method="get" th:action="@{/delete_user}">
+      <input type="hidden" name="id" th:value="${user.id}">
+      <button type="submit">Delete</button>
+    </form>
+  </td>
+
+  </tr>
+
+</table>
+
+</body>
+
+</html>
