@@ -10,7 +10,7 @@
 <body>
 <h1>Users</h1>
 
-<form method="get" th:action="@{/add_user}">
+<form method="post" th:action="@{/add_user}">
   <label for="addFirstName">First Name:</label>
   <input type="text" id="addFirstName" name="firstName">
   <label for="addLastName">Last Name:</label>
@@ -33,34 +33,34 @@
   <tr th:each="user : ${users}">
     <td th:text="${user.id}">id</td>
 
-    <form method="get" th:action="@{/edit_user}">
-    <td>
-      <label for="firstName"></label>
-      <input type="text" id="firstName" name="firstName" th:value="${user.firstName}">
-    </td>
-
-    <td>
-        <label for="lastName"></label>
-        <input type="text" id="lastName" name="lastName" th:value="${user.lastName}">
-    </td>
-
-    <td>
-      <label for="email"></label>
-      <input type="text" id="email" name="email" th:value="${user.email}">
-    </td>
+    <form method="post" th:action="@{/edit_user}">
+      <td>
+        <label for="firstName"></label>
+        <input type="text" id="firstName" name="firstName" th:value="${user.firstName}">
+      </td>
 
       <td>
-      <input type="hidden" name="id" th:value="${user.id}">
-      <button type="submit">Edit</button>
+        <label for="lastName"></label>
+        <input type="text" id="lastName" name="lastName" th:value="${user.lastName}">
+      </td>
+
+      <td>
+        <label for="email"></label>
+        <input type="text" id="email" name="email" th:value="${user.email}">
+      </td>
+
+      <td>
+        <input type="hidden" name="id" th:value="${user.id}">
+        <button type="submit">Edit</button>
       </td>
     </form>
 
-  <td>
-    <form method="get" th:action="@{/delete_user}">
-      <input type="hidden" name="id" th:value="${user.id}">
-      <button type="submit">Delete</button>
-    </form>
-  </td>
+    <td>
+      <form method="get" th:action="@{/delete_user}">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <button type="submit">Delete</button>
+      </form>
+    </td>
 
   </tr>
 

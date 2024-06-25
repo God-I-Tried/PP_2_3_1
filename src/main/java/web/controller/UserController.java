@@ -10,9 +10,7 @@ import web.service.UserService;
 @Controller
 public class UserController {
 
-//    @Autowired
-//    private UserService userService;
-    private UserService userService;
+    private final UserService userService;
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
@@ -30,21 +28,13 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/add_user")
+    @PostMapping("/add_user")
     public String addUser(@ModelAttribute User user) {
         userService.addUser(user);
         return "redirect:/users";
     }
 
-//    @PostMapping("/edit_user")
-//    public String editUser(@RequestParam long id, @RequestParam String firstName,
-//                           @RequestParam String lastName, @RequestParam String email) {
-//        User user = new User(firstName, lastName, email);
-//        user.setId(id);
-//        userService.editUser(user);
-//        return "redirect:/users";
-//    }
-    @GetMapping("/edit_user")
+    @PostMapping("/edit_user")
     public String editUser(@RequestParam long id, @ModelAttribute User user) {
         user.setId(id);
         userService.editUser(user);

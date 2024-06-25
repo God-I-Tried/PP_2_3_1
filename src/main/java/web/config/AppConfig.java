@@ -21,9 +21,7 @@ import javax.sql.DataSource;
 @ComponentScan(value = "web")
 public class AppConfig {
 
-//    @Autowired
-//    private Environment env;
-    private Environment env;
+    private final Environment env;
     @Autowired
     public AppConfig(Environment env) {
         this.env = env;
